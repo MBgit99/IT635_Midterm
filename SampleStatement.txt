@@ -1,0 +1,1 @@
+SELECT jobID, jobMaterials.materialID, materials.material, material, materials.machineID, equipment.model FROM jobMaterials INNER JOIN materials ON jobMaterials.materialID=materials.materialID INNER JOIN equipment ON materials.machineID=equipment.machineID WHERE jobID='1007';
