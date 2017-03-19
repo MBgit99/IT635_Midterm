@@ -16,6 +16,11 @@ if ($db->connect_errno > 0)
 
 echo "\r\n";
 echo "checking if machine in use: $machineID".PHP_EOL;
+$machineName = $db->query("SELECT * FROM equipment WHERE machineID=$machineID limit 1;");
+$results2 = mysqli_fetch_array($machineName);
+echo "You have selected: ".$results2['equipment'].":".$results2['model']."\r\n";
+echo "\r\n";
+
 $checkMachine = $db->query("select * from equipmentStatus WHERE status IN ('in use', 'IN USE', 'In Use') AND machineID = $machineID;");
 //$result1 = mysqli_fetch_array($checkMachine);
 
@@ -45,7 +50,7 @@ else {
 
 
 echo "\r\n";
-echo "attempting to insert record: $jobID, $machineID, $startDate, $endDate".PHP_EOL;
+//echo "attempting to insert record: $jobID, $machineID, $startDate, $endDate".PHP_EOL;
 if($endDate == 'none' || 'NONE') {
 	$insertString = "insert into equipmentStatus(jobID, machineID, startDate, status) values ('$jobID', '$machineID', '$startDate', '$status');";
 }
@@ -58,16 +63,16 @@ $insertString = "insert into equipmentStatus(machineID, startDate, status) value
 else {
 	$insertString = "insert into equipmentStatus(jobID, machineID, startDate, endDate, status) values ('$jobID','$machineID', '$startDate', 'endDate', '$status');";
 }
-echo "attempting to execute this SQL:".PHP_EOL;
-echo $insertString.PHP_EOL;
+//echo "attempting to execute this SQL:".PHP_EOL;
+//echo $insertString.PHP_EOL;
 $results = $db->query($insertString);
-$queryString = "select * from equipmentStatus;";
-$results = $db->query($queryString);
-print_r($results);
-while ($obj = $results->fetch_object())
-{
-    print_r($obj);
-}
+$queryString =$db->query("select * from equipmentStatus;");
+
+while($row=mysqli_fetch_array($queryString)) {
+		echo $row['jobID']."  |||  ".$row['machineID'].": ".$row['startDate']."  |||  ".$row['endDate']."  |||  ".$row['status'];
+		
+		echo "\r\n";
+	}
 $db->close();
 echo "DB Connection Success".PHP_EOL;
 ?>

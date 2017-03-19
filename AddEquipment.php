@@ -13,17 +13,19 @@ if ($db->connect_errno > 0)
    exit(0);
 }
 echo "attempting to insert record: $equipment $model $energySource $location $lockable $typeOfLock".PHP_EOL;
+echo "\r\n";
 $insertString = "insert into equipment(equipment, model, energySource, location, lockable, typeOfLock) values ('$equipment', '$model', '$energySource', '$location', '$lockable', '$typeOfLock');";
-echo "attempting to execute this SQL:".PHP_EOL;
-echo $insertString.PHP_EOL;
+//echo "attempting to execute this SQL:".PHP_EOL;
+//echo $insertString.PHP_EOL;
 $results = $db->query($insertString);
-$queryString = "select * from equipment;";
-$results = $db->query($queryString);
-print_r($results);
-while ($obj = $results->fetch_object())
-{
-    print_r($obj);
-}
+$queryString = $db->query("select * from equipment;");
+
+while($row=mysqli_fetch_array($queryString)) {
+		echo $row['machineID']."__".$row['equipment'].":".$row['model']."__".$row['energySource']."__".$row['location']."__".$row['lockable']."__".$row['typeOfLock'];
+		echo "\r\n";
+		echo "\r\n";
+	}
+
 $db->close();
 echo "DB Connection Success".PHP_EOL;
 ?>
