@@ -13,17 +13,17 @@ $results2=mysqli_fetch_array($checkString);
 echo "\r\n";
 print_r("The equipment required for ".$results2['jobName']." is the following: ");
 
-$insertString = "SELECT jobID, material, materials.machineID, equipment, equipment.model FROM jobMaterials INNER JOIN materials ON jobMaterials.materialID=materials.materialID INNER JOIN equipment ON materials.machineID=equipment.machineID WHERE jobID='$jobID'";
+$insertString = $db->query("SELECT jobID, material, materials.machineID, equipment, equipment.model FROM jobMaterials INNER JOIN materials ON jobMaterials.materialID=materials.materialID INNER JOIN equipment ON materials.machineID=equipment.machineID WHERE jobID='$jobID'");
 
 echo "\r\n";
 
-$results = $db->query($insertString);
 
-print_r($results);
-while ($obj = $results->fetch_object())
-{
-    print_r($obj);
-}
+
+while($row=mysqli_fetch_array($insertString)) {
+		echo $row['jobID']."  ---  ".$row['equipment'].": ".$row['model']." for ".$row['material'];
+		
+		echo "\r\n";
+	}
 $db->close();
 echo "DB Connection Success".PHP_EOL;
 ?>
