@@ -32,10 +32,14 @@ echo "You have selected: ".$results2['equipment'].":".$results2['model']."\r\n";
 echo "\r\n";
 
 $checkMachine = $db->query("select * from equipmentStatus WHERE status IN ('in use', 'IN USE', 'In Use') AND machineID = $machineID;");
-//$result1 = mysqli_fetch_array($checkMachine);
+$result1 = mysqli_fetch_array($checkMachine);
+$jobName =$result1['jobID'];
+
+$checkName = $db->query("select * from jobSites WHERE jobID = '$jobName';");
+$nameCheck = mysqli_fetch_array($checkName);
 
 if (mysqli_num_rows($checkMachine) > 0) {
-		exit("Machine in use!\r\n");
+		exit("Machine is being used by : ".$result1['jobID']." -- ".$nameCheck['jobName']."\r\n");
 }
 else {
 	echo "Machine is Free!\r\n";
@@ -60,18 +64,23 @@ else {
 
 
 echo "\r\n";
-//echo "attempting to insert record: $jobID, $machineID, $startDate, $endDate".PHP_EOL;
-if($endDate == 'none' || 'NONE') {
+//echo "attempting to insert record: $jobID, $machineID, $startDate, $endDate, $status".PHP_EOL;
+if(($endDate == 'none' || 'NONE') && ($jobID != 'none')) {
+
 	$insertString = "insert into equipmentStatus(jobID, machineID, startDate, status) values ('$jobID', '$machineID', '$startDate', '$status');";
+	var_dump($insertString);
 }
-elseif($jobID == 'none' || 'NONE'){
+elseif(($jobID == 'none' || 'NONE') && ($status != 'broken')) {
 $insertString = "insert into equipmentStatus(machineID, startDate, endDate, status) values ('$machineID', '$startDate', 'endDate', '$status');";
+var_dump($insertString);
 }
-elseif(($jobID == 'none' || 'NONE') && ($endDate == 'none' || 'NONE')){
+elseif($status == 'broken' || 'BROKEN') {
 $insertString = "insert into equipmentStatus(machineID, startDate, status) values ('$machineID', '$startDate', '$status');";
+var_dump($insertString);
 }
 else {
-	$insertString = "insert into equipmentStatus(jobID, machineID, startDate, endDate, status) values ('$jobID','$machineID', '$startDate', 'endDate', '$status');";
+	$insertString = "insert into equipmentStatus(jobID, machineID, startDate, endDate, status) values ('$jobID','$machineID', '$startDate', '$endDate', '$status');";
+var_dump($insertString);
 }
 //echo "attempting to execute this SQL:".PHP_EOL;
 //echo $insertString.PHP_EOL;

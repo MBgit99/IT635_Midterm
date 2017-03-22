@@ -34,7 +34,7 @@ $results = $db->query($insertString);
 $queryString = $db->query("select * from equipment;");
 
 while($row=mysqli_fetch_array($queryString)) {
-		echo $row['machineID']."   ||   ".$row['equipment'].":".$row['model']."   ||   "..$row['energySource']."   ||   "..$row['location']."   ||   "..$row['lockable']."   ||   "..$row['typeOfLock'];
+		echo $row['machineID']."   ||   ".$row['equipment'].":".$row['model']."   ||   ".$row['energySource']."   ||   ".$row['location']."   ||   ".$row['lockable']."   ||   ".$row['typeOfLock'];
 		echo "\r\n";
 		echo "\r\n";
 	}
