@@ -1,10 +1,10 @@
 #!/usr/bin/php
 <?php
-$jobID = $argv[1];
-$machineID = $argv[2];
-$startDate = $argv[3];
-$endDate = $argv[4];
-$status = $argv[5];
+//$jobID = $argv[1];
+//$machineID = $argv[2];
+//$startDate = $argv[3];
+//$endDate = $argv[4];
+//$status = $argv[5];
 
 $db = new mysqli('localhost','root','SUPERrootTREE!','IronWorks');
 if ($db->connect_errno > 0)
@@ -12,6 +12,16 @@ if ($db->connect_errno > 0)
    echo __FILE__.":".__LINE__.": failed to connect to db, re: $db->connect_error".PHP_EOL;
    exit(0);
 }
+echo "Enter jobID\r\n";
+$jobID =trim(fgets(STDIN));
+echo "Enter machineID\r\n";
+$machineID =trim(fgets(STDIN));
+echo "Enter startDate\r\n";
+$startDate =trim(fgets(STDIN));
+echo "Enter endDate\r\n";
+$endDate =trim(fgets(STDIN));
+echo "Enter status\r\n";
+$status =trim(fgets(STDIN));
 
 
 echo "\r\n";

@@ -1,6 +1,6 @@
 #!/usr/bin/php
 <?php
-$jobID = $argv[1];
+//$jobID = $argv[1];
 
 $db = new mysqli('localhost','root','SUPERrootTREE!','IronWorks');
 if ($db->connect_errno > 0)
@@ -8,6 +8,17 @@ if ($db->connect_errno > 0)
    echo __FILE__.":".__LINE__.": failed to connect to db, re: $db->connect_error".PHP_EOL;
    exit(0);
 }
+echo "Please select a job to generate a report for: \r\n";
+$queryString = "select * from jobSites;";
+$results2 = $db->query($queryString);
+
+while($row=mysqli_fetch_array($results2)) {
+		echo $row['jobID'].":".$row['jobName'];
+		echo "\r\n";
+	}
+$jobID =trim(fgets(STDIN));
+
+
 $checkString = $db->query("SELECT jobName FROM jobSites WHERE jobID='$jobID' limit 1;");
 $results2=mysqli_fetch_array($checkString);
 if ($results2==0) {

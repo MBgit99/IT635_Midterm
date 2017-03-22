@@ -1,13 +1,19 @@
 #!/usr/bin/php
 <?php
-$username = $argv[1];
-$passwd = $argv[2];
+//$username = $argv[1];
+//$passwd = $argv[2];
 $db = new mysqli('localhost','root','SUPERrootTREE!','IronWorks');
 if ($db->connect_errno > 0)
 {
    echo __FILE__.":".__LINE__.": failed to connect to db, re: $db->connect_error".PHP_EOL;
    exit(0);
 }
+
+echo "Enter username\r\n";
+$username =trim(fgets(STDIN));
+echo "Enter password\r\n";
+$passwd =trim(fgets(STDIN));
+
 echo "Checking credentials for: $username".PHP_EOL;
 
 $insertString = "SELECT * FROM user WHERE username='$username' AND passwd='$passwd';";
