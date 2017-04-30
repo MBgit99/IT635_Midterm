@@ -16,6 +16,27 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `WORKDAMNYOU`
+--
+
+DROP TABLE IF EXISTS `WORKDAMNYOU`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `WORKDAMNYOU` (
+  `id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `WORKDAMNYOU`
+--
+
+LOCK TABLES `WORKDAMNYOU` WRITE;
+/*!40000 ALTER TABLE `WORKDAMNYOU` DISABLE KEYS */;
+/*!40000 ALTER TABLE `WORKDAMNYOU` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `equipment`
 --
 
@@ -214,4 +235,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-25 18:58:07
+-- Dump completed on 2017-04-28  9:27:57

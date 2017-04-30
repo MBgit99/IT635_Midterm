@@ -13,11 +13,13 @@ echo "Enter username\r\n";
 $username =trim(fgets(STDIN));
 echo "Enter password\r\n";
 $passwd =trim(fgets(STDIN));
+$hashpasswd= hash('sha256', $passwd);
+
 
 echo "\r\n";
 echo "Checking credentials for: $username".PHP_EOL;
 
-$insertString = "SELECT * FROM user WHERE username='$username' AND passwd='$passwd';";
+$insertString = "SELECT * FROM user WHERE username='$username' AND passwd='$hashpasswd';";
 $checkPrivilege = $db->query("SELECT privilege FROM user WHERE username ='$username' limit 1;");
 $results = $db->query($insertString);
 $result2 = mysqli_fetch_array($checkPrivilege);
