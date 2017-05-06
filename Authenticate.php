@@ -18,6 +18,7 @@ $hashpasswd= hash('sha256', $passwd);
 
 echo "\r\n";
 echo "Checking credentials for: $username".PHP_EOL;
+//echo "This is your hash: ".$hashpasswd."\r\n";
 
 $insertString = "SELECT * FROM user WHERE username='$username' AND passwd='$hashpasswd';";
 $checkPrivilege = $db->query("SELECT privilege FROM user WHERE username ='$username' limit 1;");
