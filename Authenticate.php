@@ -49,6 +49,7 @@ if (($result2['privilege']=='1') && $results->num_rows!=0){
 	echo "Invoice materials for a site - AddJobMaterials.php ".PHP_EOL;
 	echo "Generate a status report for a machine - EquipmentReport.php".PHP_EOL;
 	echo "Generate a status report for a job site - JobReport.php".PHP_EOL;
+	echo "Generate a list of employees - mongoemployee.php".PHP_EOL;
 }
 if (($result2['privilege']=='0') && $results->num_rows!=0) {
 	print_r("You're privilege level is: ".$result2['privilege']."\r\n");
