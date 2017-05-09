@@ -58,10 +58,11 @@ switch($choice) {
 			
 }
 
-$queryString =$db->query("select * from equipment;");
+$queryString =$db->query("SELECT * FROM equipment;");
 
 while($row=mysqli_fetch_array($queryString)) {
 		echo $row['machineID'].". ".$row['equipment'].": ".$row['model']."  |||  "."Last Maintenance: ".$row['lastMaintenance']."  |||  "."Next Maintenance: ".$row['nextMaintenance']."\r\n";
+		echo "It is recommended this machine undergo maintenance approximately every: ".$row['schedule']."\r\n";
 		
 		echo "\r\n";
 	}

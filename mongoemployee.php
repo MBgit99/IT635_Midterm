@@ -9,11 +9,11 @@
 	$mdb->executeCommand ('db', $command);
 
 	$servers = $mdb->getServers();
-	print_r($servers);   
+	//print_r($servers);   
 	$filter = array();
 	$query = new MongoDB\Driver\Query($filter);
 	$results = $mdb->executeQuery("ironworks.employees", $query);
-
+	echo "Generating List of Employees: \r\n";
 	foreach ($results as $doc) {
 	
 	$Fname = $doc->Fname;
